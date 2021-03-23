@@ -69,6 +69,7 @@ const program = commander
     .option('--task [text]', 'Create new task on story')
     .option('--task-complete [text]', 'Toggle completion of task on story matching text')
     .option('-y, --type [name]', 'Update type of story', '')
+    .option('--start', 'Vezoa: start the branch')
     .parse(process.argv);
 
 const main = async () => {
@@ -278,6 +279,13 @@ const main = async () => {
             storyLib.checkoutStoryBranch(story);
         } else if (story && program.gitBranchShort) {
             storyLib.checkoutStoryBranch(story, `${config.mentionName}/ch${story.id}/`);
+        }
+
+        if (story && program.start) {
+            // git checkout branch e move story to in development
+            stopSpinner();
+            let branch = `${story.story_type}/ch${story.id}`;
+            execSync(`git checkout ${branch} 2> /dev/null || git checkout -b ${branch}`);
         }
     });
     stopSpinner();
