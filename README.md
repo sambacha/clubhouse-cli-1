@@ -1,6 +1,6 @@
 # clubhouse-cli
 
-[![CircleCI](https://circleci.com/gh/andjosh/clubhouse-cli.svg?style=svg)](https://circleci.com/gh/andjosh/clubhouse-cli)
+> npm i -g chcz
 
 This is a command line interface for [Clubhouse](https://app.clubhouse.io),
 focused on the display and manipulation of stories. With this, you can run
