@@ -2,25 +2,30 @@
 
 [![CircleCI](https://circleci.com/gh/andjosh/clubhouse-cli.svg?style=svg)](https://circleci.com/gh/andjosh/clubhouse-cli)
 
-This is a command line interface for [Clubhouse](https://app.clubhouse.io), focused on the display and manipulation of stories. With this, you can run custom searches, save them as local workspaces, and recall those workspaces. You can also view full stories, update most attributes on a story, and create brand new stories quickly.
+This is a command line interface for [Clubhouse](https://app.clubhouse.io),
+focused on the display and manipulation of stories. With this, you can run
+custom searches, save them as local workspaces, and recall those workspaces. You
+can also view full stories, update most attributes on a story, and create brand
+new stories quickly.
 
 ## Table of Contents
+
 - [Usage & Commands](#usage)
-    - [Search](#search)
-    - [Story](#story)
-    - [Story Creation](#story-creation)
-    - [Workspace](#workspace)
-    - [Members](#members)
-    - [Epics](#epics)
-    - [Workflows](#workflows)
-    - [Projects](#projects)
-    - [Install](#install)
-    - [Developement](#developement)
+  - [Search](#search)
+  - [Story](#story)
+  - [Story Creation](#story-creation)
+  - [Workspace](#workspace)
+  - [Members](#members)
+  - [Epics](#epics)
+  - [Workflows](#workflows)
+  - [Projects](#projects)
+  - [Install](#install)
+  - [Developement](#developement)
 - [Acknowledgments](#acknowledgments)
 
 ## Usage
 
-~~~
+```
   Usage: club [options] [command]
 
   A command line tool for searching, viewing, and updating clubhouse.io stories
@@ -44,11 +49,11 @@ This is a command line interface for [Clubhouse](https://app.clubhouse.io), focu
     projects        list or search projects
     workspace       list stories matching saved workspace query
     help [cmd]      display help for [cmd]
-~~~
+```
 
 ### Search
 
-~~~
+```
   Usage: club find [options] [SEARCH OPERATORS]
 
   Search through clubhouse stories. Arguments (non-flag/options) will
@@ -80,11 +85,11 @@ This is a command line interface for [Clubhouse](https://app.clubhouse.io), focu
     -r, --sort [field]                  Sort stories by field (accessor[:asc|desc][,next])
     -f, --format [template]             Format each story output by template
     -h, --help                          output usage information
-~~~
+```
 
 Example output
 
-~~~
+```
 $ club search -o 'josh' -s 'Review'
 #1480 Create Thinga-ma-bob
   Type:      feature/3
@@ -100,13 +105,13 @@ $ club search -o 'josh' -s 'Review'
 $ club search -o 'josh' -s 'Review' -f $'%i\t%s\t%t\n\t%o'
 1480    Code Review (#500000020)  Create Thinga-ma-bob
     Josh (josh)
-~~~
+```
 
 #### Story Output Formatting
 
 Templating variables:
 
-~~~
+```
 %id      Print ID of story
 %t       Print title/name of story
 %a       Print archived status of story
@@ -124,17 +129,21 @@ Templating variables:
 %j       Print full story as formatted JSON
 %gb      Print Git integration branch name
 %gbs     Pring Git integration branch short name
-~~~
+```
 
-Note that the `$` string operator in bash is helpful in allowing `\t` (tab) and `\n` (newline) literals in the formatting string. Otherwise, you can actually just type a newline character.
+Note that the `$` string operator in bash is helpful in allowing `\t` (tab) and
+`\n` (newline) literals in the formatting string. Otherwise, you can actually
+just type a newline character.
 
 #### Story Output Sorting
 
-The default sorting for stories found is `state.position:asc,position:asc`, which translates to "sort by associated state position ascending, then by story position ascending within the same state."
+The default sorting for stories found is `state.position:asc,position:asc`,
+which translates to "sort by associated state position ascending, then by story
+position ascending within the same state."
 
 ### Story
 
-~~~
+```
   Usage: club story [options] <id>
 
   Update and/or display story details
@@ -172,11 +181,11 @@ The default sorting for stories found is `state.position:asc,position:asc`, whic
     --task-complete [text]    Toggle completion of story task matching text
     -y, --type [name]         Set type of story
     -h, --help                output usage information
-~~~
+```
 
 Example output:
 
-~~~
+```
 $ club story 1480 -c 'This is a commend' -o josh
 #1480 Create Thinga-ma-bob
 Desc:    Create a thing to display:
@@ -188,11 +197,11 @@ State:   #500000020 Code Review
 URL:     https://app.clubhouse.io/story/1480
 Comment: This is a commend
          Josh at: 2017-10-25T16:17:04Z
-~~~
+```
 
 ### Story Creation
 
-~~~
+```
   Usage: club create [options]
 
   create a story with provided details
@@ -218,11 +227,11 @@ Comment: This is a commend
     --git-branch              Checkout git branch from story slug <mention-name>/ch<id>/<type>-<title>
                               as required by the Git integration: https://bit.ly/2RKO1FF
     --git-branch-short        Checkout git branch from story slug <mention-name>/ch<id>/<title>
-~~~
+```
 
 ### Workspace
 
-~~~
+```
   Usage: club workspace [NAME] [options]
 
   List stories matching saved workspace query
@@ -235,11 +244,11 @@ Comment: This is a commend
     -u, --unset [name]  Force unset saved workspace
     -q, --quiet         Print only resulting story output, no loading dialog
     -h, --help          output usage information
-~~~
+```
 
 ### Members
 
-~~~
+```
   Usage: club members [options]
 
   Display members available for stories
@@ -250,11 +259,11 @@ Comment: This is a commend
     -s, --search [query]  List members with name containing query
     -d, --disabled        List members including disabled
     -h, --help            output usage information
-~~~
+```
 
 ### Epics
 
-~~~
+```
   Usage: club epics [options]
 
   Display epics available for stories
@@ -270,13 +279,13 @@ Comment: This is a commend
     -t, --title [query]       List epics with name/title containing query
     -s, --started             List epics that have been started
     -h, --help                output usage information
-~~~
+```
 
 #### Epic Output Formatting
 
 Templating variables:
 
-~~~
+```
 %id      Print ID of epic
 %t       Print title/name of epic
 %m       Print milestone of epic
@@ -290,11 +299,11 @@ Templating variables:
 %a       Print archived status of epic
 %st      Print started status of epic
 %co      Print completed status of epic
-~~~
+```
 
 ### Workflows
 
-~~~
+```
   Usage: club workflows [options]
 
   Display workflows/states available for stories
@@ -304,11 +313,11 @@ Templating variables:
 
     -s, --search [query]  List states containing query
     -h, --help            output usage information
-~~~
+```
 
 ### Projects
 
-~~~
+```
   Usage: club projects [options]
 
   Display projects available for stories
@@ -320,18 +329,18 @@ Templating variables:
     -d, --detailed       List more details for each project
     -t, --title [query]  List projects with name/title containing query
     -h, --help           output usage information
-~~~
+```
 
 ### Install
 
 Install via npm:
 
-~~~sh
+```sh
 $ npm install clubhouse-cli -g
 $ club install
-~~~
+```
 
-~~~
+```
   Usage: club install [options]
 
   Install access token for clubhouse API
@@ -342,26 +351,28 @@ $ club install
     -V, --version  output the version number
     -f, --force    Force install/reinstall
     -h, --help     output usage information
-~~~
+```
 
-You may also provide a clubhouse API token via environment variable `CLUBHOUSE_API_TOKEN`.
-~~~sh
+You may also provide a clubhouse API token via environment variable
+`CLUBHOUSE_API_TOKEN`.
+
+```sh
 $ CLUBHOUSE_API_TOKEN=foobar club story 3300
-~~~
+```
 
 ### Developement
 
 You can use typescript watcher which will recompile your code automatically:
 
-~~~sh
+```sh
 $ npm run build:watch
-~~~
+```
 
 You can run clubhouse-cli with typescript map enabled:
 
-~~~sh
+```sh
 $ npm start -- story 1234
-~~~
+```
 
 ## Acknowledgments
 
@@ -371,6 +382,7 @@ $ npm start -- story 1234
 - Official [clubhouse-lib](https://github.com/clubhouse/clubhouse-lib)
 
 ## Contributors
+
 - [andjosh](https://github.com/andjosh)
 - [j-martin](https://github.com/j-martin)
 - [joshmfrankel](https://github.com/joshmfrankel)
