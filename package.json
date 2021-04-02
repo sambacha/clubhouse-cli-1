@@ -1,5 +1,5 @@
 {
-  "name": "clubhouse-cli",
+  "name": "chcz",
   "version": "2.8.0",
   "description": "A command line tool for viewing, creating and updating clubhouse.io stories",
   "main": "build/index.js",

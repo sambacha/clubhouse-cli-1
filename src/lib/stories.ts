@@ -529,10 +529,12 @@ const checkoutStoryBranch = (story: StoryHydrated, prefix: string = '') => {
   debug('checking out git branch: ' + branch);
   execSync(`git checkout ${branch} 2> /dev/null || git checkout -b ${branch}`);
 };
-
+// FIXME - TypeScript Ignore for requestFactory.token
 // @ts-ignore
-const fileURL = (file: File) =>
-  `${file.url}?token=${client.requestFactory.token}`;
+const fileURL = (file: File) => {
+  // @ts-ignore
+  return `${file.url}?token=${client.requestFactory.token}`;
+};
 
 export default {
   listStories,
